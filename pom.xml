@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Свои groupId/artifactId/version -->
+    <groupId>com.example</groupId>
+    <artifactId>jPC</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>jPC</name>
+
+    <!-- Свойства Maven, в частности кодировка и версия Java -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Плагин компиляции -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <!-- Указываем версию Java -->
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <!-- Прочие параметры компиляции можно указать через <compilerArgs> -->
+                    <!--
+                    <compilerArgs>
+                        <arg>-Xlint:unchecked</arg>
+                        <arg>-O</arg>
+                    </compilerArgs>
+                    -->
+                </configuration>
+            </plugin>
+
+            <!-- Плагин сборки jar-файла с манифестом -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <finalName>jPC</finalName>
+                    <archive>
+                        <manifest>
+                            <!-- Главный класс, чтобы можно было запускать java -jar jPC.jar -->
+                            <mainClass>Main.Main</mainClass>
+                            <!-- Если нужен Class-Path в манифесте, можно включить:
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix> -->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- (Необязательно) Плагин для запуска приложения командой `mvn exec:java` -->
+            <!--
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>Main.Main</mainClass>
+                </configuration>
+            </plugin>
+            -->
+
+        </plugins>
+    </build>
+
+    <!-- Раздел зависимостей. Если зависимостей нет, можно не указывать.
+         Но если есть, то нужно оформить их здесь, например:
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    -->
+</project>
